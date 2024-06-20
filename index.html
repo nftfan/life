@@ -9,7 +9,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 8px;
-            background-color: #1e1e1e;
+            background-color: #000000;
             color: #f5f5f5;
             margin: 0;
             padding: 20px;
@@ -84,7 +84,7 @@
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #444;
-            background-color: #3e3e3e;
+            background-color: #2081e2;
             cursor: pointer;
             font-size: 10px;
         }
@@ -117,8 +117,8 @@
             color: #dc3545;
         }
         img {
-            width: 80px;
-            height: 80px;
+            width: 40px;
+            height: 40px;
             object-fit: cover;
             border-radius: 8px;
         }
@@ -147,7 +147,7 @@
                 <option value="🎂">🎂 Birthday</option>
                 <option value="👴">👴 Retirement</option>
                 <option value="⚰️">⚰️ Funeral</option>
-		    <option value=" 🌐"> 🌐 Link</option>
+                <option value=" 🌐"> 🌐 Link</option>
             </select>
             <input type="date" id="noteDate">
             <input type="url" id="imageUrl" placeholder="Image URL (optional)">
@@ -324,7 +324,7 @@
                         <td>${note.emoji}</td>
                         <td>${note.date}</td>
                         <td class="${formatDaysClass(note.date)}">${formatDays(note.date)}</td>
-                        <td>${note.imageUrl ? `<img src="${note.imageUrl}" alt="Image">` : ''}</td>
+                        <td>${note.imageUrl ? `<a href="${note.imageUrl}" target="_blank"><img src="${note.imageUrl}" alt="Image"></a>` : ''}</td>
                     `;
                     tableBody.appendChild(noteRow);
                 });
@@ -376,4 +376,5 @@
     </script>
 </body>
 </html>
+
 
