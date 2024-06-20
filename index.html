@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 10px;
-            background-color: #000000;
+            font-size: 8px;
+            background-color: #1e1e1e;
             color: #f5f5f5;
             margin: 0;
             padding: 20px;
@@ -17,7 +17,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: #2b2b2b;
+            background-color: #2a2a2a;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.4);
             padding: 20px;
@@ -66,7 +66,7 @@
         .tab p {
             margin: 0;
             padding: 0;
-            color: #ffffff;
+            color: #dddddd;
             font-size: 10px;
         }
         .tabs {
@@ -84,10 +84,9 @@
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #444;
-            background-color: #2081e2;
+            background-color: #3e3e3e;
             cursor: pointer;
             font-size: 10px;
-			color: #ffffff;
         }
         .tab-button.active {
             background-color: #007bff;
@@ -109,7 +108,7 @@
             color: #f5f5f5;
         }
         td {
-            background-color: #000000;
+            background-color: #2e2e2e;
         }
         .days-remaining {
             color: #28a745;
@@ -271,7 +270,7 @@
 
                 noteList.forEach(note => {
                     const noteElement = document.createElement('p');
-                    noteElement.innerHTML = `${convertLinks(note.text)} (${formatDays(note.date)})`;
+                    noteElement.textContent = `${note.text} (${formatDays(note.date)})`;
                     tab.appendChild(noteElement);
                 });
 
@@ -320,7 +319,7 @@
                     noteRow.className = yearMonth;
                     noteRow.style.display = 'none';
                     noteRow.innerHTML = `
-                        <td>${convertLinks(note.text)}</td>
+                        <td>${note.text}</td>
                         <td>${note.emoji}</td>
                         <td>${note.date}</td>
                         <td class="${formatDaysClass(note.date)}">${formatDays(note.date)}</td>
@@ -367,11 +366,6 @@
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
             return diffDays > 0 ? 'days-remaining' : 'days-past';
-        }
-
-        function convertLinks(text) {
-            const urlPattern = /(https?:\/\/[^\s]+)/g;
-            return text.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
         }
 
         setInterval(() => {
