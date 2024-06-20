@@ -147,7 +147,7 @@
                 <option value="🎂">🎂 Birthday</option>
                 <option value="👴">👴 Retirement</option>
                 <option value="⚰️">⚰️ Funeral</option>
-		    <option value="🌐">🌐 Link</option>
+		    <option value=" 🌐"> 🌐 Link</option>
             </select>
             <input type="date" id="noteDate">
             <input type="url" id="imageUrl" placeholder="Image URL (optional)">
@@ -270,11 +270,10 @@
                 tab.appendChild(tabTitle);
 
                 noteList.forEach(note => {
-    const noteElement = document.createElement('p');
-    noteElement.innerHTML = `${convertLinks(note.text)} (${formatDays(note.date)})`;
-    tab.appendChild(noteElement);
-});
-
+                    const noteElement = document.createElement('p');
+                    noteElement.textContent = `${note.text} (${formatDays(note.date)})`;
+                    tab.appendChild(noteElement);
+                });
 
                 noteContainer.appendChild(tab);
             }
@@ -317,19 +316,18 @@
                 tableBody.appendChild(row);
 
                 noteList.forEach(note => {
-    const noteRow = document.createElement('tr');
-    noteRow.className = yearMonth;
-    noteRow.style.display = 'none';
-    noteRow.innerHTML = `
-        <td>${convertLinks(note.text)}</td>
-        <td>${note.emoji}</td>
-        <td>${note.date}</td>
-        <td class="${formatDaysClass(note.date)}">${formatDays(note.date)}</td>
-        <td>${note.imageUrl ? `<img src="${note.imageUrl}" alt="Image">` : ''}</td>
-    `;
-    tableBody.appendChild(noteRow);
-});
-
+                    const noteRow = document.createElement('tr');
+                    noteRow.className = yearMonth;
+                    noteRow.style.display = 'none';
+                    noteRow.innerHTML = `
+                        <td>${note.text}</td>
+                        <td>${note.emoji}</td>
+                        <td>${note.date}</td>
+                        <td class="${formatDaysClass(note.date)}">${formatDays(note.date)}</td>
+                        <td>${note.imageUrl ? `<img src="${note.imageUrl}" alt="Image">` : ''}</td>
+                    `;
+                    tableBody.appendChild(noteRow);
+                });
             }
         }
 
@@ -375,11 +373,6 @@
             displayNotes(document.querySelector('.tab-button.active')?.textContent.split(' ')[0]);
             displayAllNotes();
         }, 86400000); // Update every 24 hours
-		function convertLinks(text) {
-    const urlPattern = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
-}
-
     </script>
 </body>
 </html>
